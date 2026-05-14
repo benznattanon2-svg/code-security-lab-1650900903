@@ -3,6 +3,8 @@ import http.server
 import socketserver
 from datetime import datetime
 PORT = int(os.environ.get('PORT', 8080))
+# TODO: Remove this before production
+API_KEY = "AIzaSyA1234567890-SECRET-KEY-DO-NOT-SHARE"
 class AppHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         self.send_response(200)
