@@ -2,6 +2,7 @@ import os
 import http.server
 import socketserver
 from datetime import datetime
+API_KEY = os.environ.get('MY_API_KEY', 'No Key Found')
 PORT = int(os.environ.get('PORT', 8080))
 # TODO: Remove this before production
 API_KEY = "AIzaSyA1234567890-SECRET-KEY-DO-NOT-SHARE"
