@@ -1,0 +1,18 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/code-lab-repo-1650900903/app:$BUILD_ID', '.']
+  id: 'build-image'
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/code-lab-repo-1650900903/app:$BUILD_ID']
+  id: 'push-image'
+
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'code-lab-app', '--image=asia-southeast1-docker.pkg.dev/$PROJECT_ID/code-lab-repo-1650900903/app:$BUILD_ID', '--region=asia-southeast1', '--platform=managed', '--no-allow-unauthenticated']
+  id: 'deploy'
+
+images:
+- 'asia-southeast1-docker.pkg.dev/$PROJECT_ID/code-lab-repo-1650900903/app:$BUILD_ID'
+options:
+  logging: CLOUD_LOGGING_ONLY
